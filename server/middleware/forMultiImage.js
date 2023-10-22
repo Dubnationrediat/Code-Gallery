@@ -1,7 +1,7 @@
 import multer from 'multer'
 const storage = multer.diskStorage({
     destination : (req,file,cb)=>{
-        cg(null,"/Resources")
+        cb(null,"./Resources")
     },
 
     filename:(req,file,cb)=>{
@@ -11,7 +11,9 @@ const storage = multer.diskStorage({
 
 const fileChecker = function (req,file,cb){
     if(file.mimetype !== 'image/png'){
-        return cb(new Error("only PNG files are allowed"))
+        req.fileCheckerError = "only PNG files are allowed"; 
+        cb(null, false);
+        // return cb(new Error("only PNG files are allowed"))
     }else{
         cb(null,true)
     }
@@ -24,4 +26,5 @@ const imageUploader = multer({
     fileFilter : fileChecker
 })
 
-export default imageUploader.array('images',10)
+
+export default imageUploader.fields([{name:'uploadedImages',maxCount:10}])
