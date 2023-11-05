@@ -1,37 +1,46 @@
 import connectionInfo from "../schema/database.config.js"
+// import formidable from 'formidable'
+
 
 let uploaderC = (req,res)=>{
     
    if(req.fileCheckerError){
-    res.send("Only PNG image types can be uploaded")
+    res.json({
+      message : "Only PNG image types can be uploaded",
+      redirect :'/upload',
+      redirectMessage:'click here to try again'
+    })
    }else{
-      //* console.log(req.files) // this is giving me the image files
-      console.log(req)
+      if(req.files.uploadedImages===undefined){
+           res.json({
+            message : 'image Upload is mandatory',
+            redirect :'/home',
+            redirectMessage:'click here to go to home page'
+         })
+      }else{
+         const {image_name,image_description}=req.body
+          let imageNames=''
+         for (let i = 0; i < req.files.uploadedImages.length; i++) {
+
+                   imageNames = `${imageNames}${req.files.uploadedImages[i].filename},`
+            
+         }
+         let insertData = `INSERT INTO image_table(picture_title,picture_description,picture_path) VALUES (?,?,?)`
+         let value =[image_name,image_description,imageNames]
+             connectionInfo.query(insertData,value,(err,data,filed)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.json({
+               message : 'file uploaded successfully',
+               redirect :'/gallery',
+               redirectMessage:'click here to go to gallery page'
+            })
+        }
+    })
+      }
     }
    }
-    // if(req.file){
-    //     console.log(req.file)
-    // }
 
-    // if(req.body){
-    //     console.log(req.body)
-    // }
-
-    // const fullUrl = `${req.protocol}://${req.get("host")}/plans/${
-    //     req.file.filename
-    //   }`;
-
-
-    // const {picture_title,picture_description} = req.body
-    // let insertData = `INSERT INTO image_table(picture_title,picture_description,picture_path) VALUES (?,?,?)`
-    // let value =[picture_title,picture_description,picture_path]
-    // connectionInfo.query(insertData,value,(err,data,filed)=>{
-    //     if(err){
-    //         console.log(err)
-    //     }else{
-    //         res.send('file uploaded successfully')
-    //     }
-    // })
-// }
 
 export default uploaderC

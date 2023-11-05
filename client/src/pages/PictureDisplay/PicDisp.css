@@ -1,0 +1,9 @@
+.imageSize{
+   border: 2px solid black;
+   margin: 5px;
+   
+}
+img{
+    width: 800px;
+    height: 800px;
+}
