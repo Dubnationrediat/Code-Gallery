@@ -13,7 +13,7 @@ let uploaderC = (req,res)=>{
    }else{
       if(req.files.uploadedImages===undefined){
            res.json({
-            message : 'image Upload is mandatory',
+            message : 'Image Upload is mandatory',
             redirect :'/upload',
             redirectMessage:'click here to go to home page'
          })

@@ -28,6 +28,7 @@ function Upload() {
       }));
     }
     if (e.target.files) {
+      console.log(e.target.files)
       let files = Object.values(e.target.files);
       if (files.length > 10) {
         seterror("only 10 images are allowed");

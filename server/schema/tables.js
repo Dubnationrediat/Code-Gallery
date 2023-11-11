@@ -14,4 +14,4 @@ export let imageTable = `CREATE TABLE if not exists image_table(
                 picture_description text not null,
                 picture_path text not null,
                 PRIMARY KEY(image_id)
-               )` 
+)` 
