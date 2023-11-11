@@ -14,12 +14,12 @@ let uploaderC = (req,res)=>{
       if(req.files.uploadedImages===undefined){
            res.json({
             message : 'image Upload is mandatory',
-            redirect :'/home',
+            redirect :'/upload',
             redirectMessage:'click here to go to home page'
          })
       }else{
          const {image_name,image_description}=req.body
-          let imageNames=''
+          let imageNames='' 
          for (let i = 0; i < req.files.uploadedImages.length; i++) {
 
                    imageNames = `${imageNames}${req.files.uploadedImages[i].filename},`

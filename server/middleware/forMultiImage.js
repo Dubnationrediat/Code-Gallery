@@ -13,11 +13,9 @@ const fileChecker = function (req,file,cb){
     if(file.mimetype !== 'image/png'){
         req.fileCheckerError = "only PNG files are allowed"; 
         cb(null, false);
-        // return cb(new Error("only PNG files are allowed"))
     }else{
         cb(null,true)
     }
-
 }
 
 // * initializing multer

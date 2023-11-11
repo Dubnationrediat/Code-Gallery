@@ -16,13 +16,11 @@ useEffect(() => {
     url,
     }).then((res) => {
       let filtered = res.data[0].picture_path.split(',')
-     let quotationRemoved = filtered.pop('')
-     setResponse(filtered)
+      let commaRemover = filtered.filter(item=> item !== '')
+      
+     setResponse(commaRemover)
 
    
-   
-      // let splitted = res.data.split(',')
-      //   setResponse(splitted)
 
 })
 }, [])

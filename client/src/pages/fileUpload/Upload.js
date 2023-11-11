@@ -9,7 +9,7 @@ function Upload() {
     imageName: "",
     imageDescription: "",
   });
-  const [images, setimages] = useState(new FormData());
+  const [images, setimages] = useState();
   const [error, seterror] = useState("");
   const [Response, setResponse] = useState('')
 
@@ -48,6 +48,7 @@ function Upload() {
       let linkToSend = `${axiosInstance.defaults.baseURL}/user/upload`;
       images.append("image_name", inputs.imageName);
       images.append("image_description", inputs.imageDescription);
+
       axios({
         method: "POST",
         url: linkToSend,
@@ -73,11 +74,11 @@ function Upload() {
       <div className="App">
         {error && <h1>{error}</h1>}
         <form onSubmit={submitter}>
-           <label htmlFor="imageName">image name</label>         
+           <label htmlFor="imageName">Image name</label>         
            <input type="text" name='image_name' id='imageName' onChange={handleChange} />
            <br />
            <br />
-           <label htmlFor="imageD">image description</label>
+           <label htmlFor="imageD">Image description</label>
            <input type="text" name='image_description' id='imageD'  maxLength='100' onChange={handleChange}/>
            <br />
            <br />
@@ -89,7 +90,7 @@ function Upload() {
          onChange={handleChange}
          name="uploadedImages"
          type="file"
-         accept="image/*"
+         accept="image/png"
          multiple
         />
         <br />

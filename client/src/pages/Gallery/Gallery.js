@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { AxiosInstance, axiosInstance } from '../../utility/axios'
+import {axiosInstance } from '../../utility/axios'
 import './Gallery.css'
 import galleryImg from '../../images/gallery.jpg'
 function Gallery() {
@@ -22,6 +22,14 @@ useEffect(() => {
     getData()
 }, [])
  
+let deletePic = async (image_id)=>{
+   let deleteImage = `${axiosInstance.defaults.baseURL}/user/delete/${image_id}`
+  await axios({
+    method:'DELETE',
+    url:deleteImage
+  })
+  getData()
+}
 
   return (
     <div>
@@ -29,7 +37,6 @@ useEffect(() => {
         <a href="/upload">upload content</a>
         {
             data.map((content,i)=>{
-                let splitter = content.picture_path.split(',');
                 let gallery = (
                     <div key={i} className='singleShower'>
                     <h3>{`Title: ${content.picture_title}`}</h3>
@@ -40,7 +47,8 @@ useEffect(() => {
                         <img className='imageIcon' src={galleryImg} alt="image section" />
                         </a>
                      </div>
-                     <h5>click on the image icon for pictures</h5>
+                     <button onClick={()=>deletePic(content.image_id)}>Delete</button>
+                     <h5>click the image icon for pictorial description</h5>
                     </div>
                 )             
             return gallery

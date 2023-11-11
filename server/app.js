@@ -7,6 +7,7 @@ import uploaderR from './Routes/uploaderR.js'
 import datas from './Routes/getAllDataR.js'
 import imageToFront from './Routes/showPicsR.js'
 import imageRoute from './Routes/imageSenderR.js'
+import deleteR from './Routes/deleteR.js'
 
 let app = express()
 
@@ -26,6 +27,7 @@ app.use('/user',datas)
 app.use('/user',imageToFront)
 app.use('/user',imageRoute)
 app.use('/user',imageToFront)
+app.use('/user',deleteR)
 
 function connectionCreator() {
     try {

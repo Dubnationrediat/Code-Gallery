@@ -11,8 +11,8 @@
     text-align: center;
     text-decoration: none;
     color: black;
-    background-color:#fe8402;
-    height: 2rem;
+    background-color:#95fe02;
+    height: 3rem;
     margin: 0.5rem auto;
     font-family: 'Rubik Marker Hatch', cursive;
     cursor: pointer;
@@ -39,4 +39,24 @@
   .thankYou {
     font-size: 24px;
     margin-bottom: 10px;
+  }
+  label{
+    font-size: 30px;
+    font-weight: bold;
+    margin: 5px;
+  }
+  button{
+    background-color: aquamarine;
+    width: 100px;
+    height: 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 20px;
+  }
+
+  a{
+    font-size: 25px;
+    color: #ff8500;
+    text-decoration: none;
+    margin: 20px;
   }
