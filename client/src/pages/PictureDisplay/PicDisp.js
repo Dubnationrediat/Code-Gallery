@@ -16,6 +16,7 @@ useEffect(() => {
     url,
     }).then((res) => {
       let filtered = res.data[0].picture_path.split(',')
+      
       let commaRemover = filtered.filter(item=> item !== '')
       
      setResponse(commaRemover)

@@ -25,6 +25,7 @@ let uploaderC = (req,res)=>{
                    imageNames = `${imageNames}${req.files.uploadedImages[i].filename},`
             
          }
+  
          let insertData = `INSERT INTO image_table(picture_title,picture_description,picture_path) VALUES (?,?,?)`
          let value =[image_name,image_description,imageNames]
              connectionInfo.query(insertData,value,(err,data,filed)=>{

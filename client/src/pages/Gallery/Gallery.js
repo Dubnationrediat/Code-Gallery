@@ -3,6 +3,7 @@ import axios from 'axios'
 import {axiosInstance } from '../../utility/axios'
 import './Gallery.css'
 import galleryImg from '../../images/gallery.jpg'
+
 function Gallery() {
  
 
